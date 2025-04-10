@@ -5,7 +5,7 @@ const eventosRouter = express.Router();
 
 // Rotas de eventos
 // GET /api/eventos - Listar todos os eventos
-eventosRouter.get("/", eventoController.getAllEventos);
+eventosRouter.get("/", EventoController.getAllEventos);
 
 // GET /api/eventos/:id - Obter um eventos pelo ID
 eventosRouter.get("/:id", EventoController.getEventoById);

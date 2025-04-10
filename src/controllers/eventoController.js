@@ -42,8 +42,6 @@ class EventoController {
         capacity,
         category,
         price,
-        createdAt,
-        updatedAt,
       } = req.body;
 
       // Verifica se o título do evento foi fornecido
@@ -55,9 +53,7 @@ class EventoController {
         !location ||
         !capacity ||
         !category ||
-        !price ||
-        !createdAt ||
-        !updatedAt
+        !price 
       ) {
         return res
           .status(400)
@@ -73,8 +69,6 @@ class EventoController {
         capacity,
         category,
         price,
-        createdAt,
-        updatedAt
       );
 
       if (!newEvento) {
@@ -100,8 +94,6 @@ class EventoController {
         capacity,
         category,
         price,
-        createdAt,
-        updatedAt,
       } = req.body;
 
       // Atualizar o evento
@@ -114,8 +106,6 @@ class EventoController {
         capacity,
         category,
         price,
-        createdAt,
-        updatedAt
       );
 
       if (!updatedEvento) {

@@ -1,35 +1,18 @@
 import prisma from "../../prisma/prisma.js";
 
 // Array para armazenar os eventos em memória
-/* let eventos = [
+let eventos = [
   {
     id: 1,
-    title: "Attack on Titan",
-    description: "Humanidade lutando contra titãs em um mundo pós-apocalíptico",
-    episodes: 75,
-    releaseYear: 2013,
-    studio: "MAPPA",
-    genres: "Ação,Drama,Fantasia",
-    rating: 4.8,
-    imageUrl: "https://example.com/aot.jpg",
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    title: "Tech Conference 2025",
+    description: "A conference about the latest in technology.",
+    date: "2025-05-15",
+    location: "São Paulo, Brazil",
+    capacity: 500,
+    category: "Technology",
+    price: 100.0,
   },
-  {
-    id: 2,
-    title: "My Hero Academia",
-    description:
-      "Em um mundo onde quase todos possuem superpoderes, um garoto sem poderes luta para se tornar um herói",
-    episodes: 113,
-    releaseYear: 2016,
-    studio: "Bones",
-    genres: "Ação,Comédia,Super-heróis",
-    rating: 4.6,
-    imageUrl: "https://example.com/mha.jpg",
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  },
-]; */
+];
 
 class EventosModel {
   // Obter todos os eventos
@@ -60,23 +43,25 @@ class EventosModel {
   async create(
     title,
     description,
-    episodes,
-    releaseYear,
-    studio,
-    genres,
-    rating,
-    imageUrl
+    date,
+    location,
+    capacity,
+    category,
+    price,
+    createdAt,
+    updatedAt
   ) {
     const newEventos = await prisma.eventos.create({
       data: {
         title,
         description,
-        episodes,
-        releaseYear,
-        studio,
-        genres,
-        rating,
-        imageUrl,
+        date,
+        location,
+        capacity,
+        category,
+        price,
+        createdAt,
+        updatedAt,
       },
     });
 
@@ -88,12 +73,13 @@ class EventosModel {
     id,
     title,
     description,
-    episodes,
-    releaseYear,
-    studio,
-    genres,
-    rating,
-    imageUrl
+    date,
+    location,
+    capacity,
+    category,
+    price,
+    createdAt,
+    updatedAt
   ) {
     const eventos = await this.findById(id);
 
@@ -109,23 +95,26 @@ class EventosModel {
     if (description !== undefined) {
       data.description = description;
     }
-    if (episodes !== undefined) {
-      data.episodes = episodes;
+    if (date !== undefined) {
+      data.date = date;
     }
-    if (releaseYear !== undefined) {
-      data.releaseYear = releaseYear;
+    if (location !== undefined) {
+      data.location = location;
     }
-    if (studio !== undefined) {
-      data.studio = studio;
+    if (capacity !== undefined) {
+      data.capacity = capacity;
     }
-    if (genres !== undefined) {
-      data.genres = genres;
+    if (category !== undefined) {
+      data.category = category;
     }
-    if (rating !== undefined) {
-      data.rating = rating;
+    if (price !== undefined) {
+      data.price = price;
     }
-    if (imageUrl !== undefined) {
-      data.imageUrl = imageUrl;
+    if (createdAt !== undefined) {
+      data.createdAt = createdAt;
+    }
+    if (updatedAt !== undefined) {
+      data.updatedAt = updatedAt;
     }
 
     const eventosUpdated = await prisma.eventos.update({
