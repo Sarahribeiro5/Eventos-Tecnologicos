@@ -1,7 +1,7 @@
 import prisma from "../../prisma/prisma.js";
 
-// Array para armazenar os animes em memória
-/* let animes = [
+// Array para armazenar os eventos em memória
+/* let eventos = [
   {
     id: 1,
     title: "Attack on Titan",
@@ -31,32 +31,32 @@ import prisma from "../../prisma/prisma.js";
   },
 ]; */
 
-class AnimeModel {
-  // Obter todos os animes
+class EventosModel {
+  // Obter todos os eventos
   async findAll() {
-    const animes = await prisma.anime.findMany({
+    const eventos = await prisma.eventos.findMany({
       orderBy: {
         createdAt: "desc",
       },
     });
 
-    console.log(animes);
+    console.log(eventos);
 
-    return animes;
+    return eventos;
   }
 
-  // Obter um anime pelo ID
+  // Obter um eventos pelo ID
   async findById(id) {
-    const anime = await prisma.anime.findUnique({
+    const eventos = await prisma.eventos.findUnique({
       where: {
         id: Number(id),
       },
     });
 
-    return anime;
+    return eventos;
   }
 
-  // Criar um novo anime
+  // Criar um novo eventos
   async create(
     title,
     description,
@@ -67,7 +67,7 @@ class AnimeModel {
     rating,
     imageUrl
   ) {
-    const newAnime = await prisma.anime.create({
+    const newEventos = await prisma.eventos.create({
       data: {
         title,
         description,
@@ -80,10 +80,10 @@ class AnimeModel {
       },
     });
 
-    return newAnime;
+    return newEventos;
   }
 
-  // Atualizar um anime
+  // Atualizar um eventos
   async update(
     id,
     title,
@@ -95,13 +95,13 @@ class AnimeModel {
     rating,
     imageUrl
   ) {
-    const anime = await this.findById(id);
+    const eventos = await this.findById(id);
 
-    if (!anime) {
+    if (!eventos) {
       return null;
     }
 
-    // Atualize o anime existente com os novos dados
+    // Atualize o aventos existente com os novos dados
     const data = {};
     if (title !== undefined) {
       data.title = title;
@@ -128,25 +128,25 @@ class AnimeModel {
       data.imageUrl = imageUrl;
     }
 
-    const animeUpdated = await prisma.anime.update({
+    const eventosUpdated = await prisma.eventos.update({
       where: {
         id: Number(id),
       },
       data,
     });
 
-    return animeUpdated;
+    return eventosUpdated;
   }
 
-  // Remover um anime
+  // Remover um eventos
   async delete(id) {
-    const anime = await this.findById(id);
+    const eventos = await this.findById(id);
 
-    if (!anime) {
+    if (!eventos) {
       return null;
     }
 
-    await prisma.anime.delete({
+    await prisma.eventos.delete({
       where: {
         id: Number(id),
       },
@@ -156,4 +156,4 @@ class AnimeModel {
   }
 }
 
-export default new AnimeModel();
+export default new EventosModel();
